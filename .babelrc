@@ -1,0 +1,8 @@
+{
+  "presets": ["stage-0", "react", "es2015", "stage-2"],
+  "plugins": [
+    "syntax-async-functions",
+    "transform-class-properties",
+    "transform-runtime"
+  ]
+}
