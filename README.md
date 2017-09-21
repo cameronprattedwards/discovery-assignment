@@ -21,7 +21,8 @@ Things that I would change, given more time, and if I were to move toward making
 - Add unit and integration tests
 - Unify the design of the additional-videos sections between the viewing page and the landing page
 - ducks/landingPage.js and ducks/viewingPage.js have tons of duplicate code. I would consolidate the code. For example, I would add a getRelatedVideos() utility method that would accept a featured video ID and, optionally, a page token, and would fetch the related video data from YouTube and deserialize it, and return an object with additional videos and the next page token.
-- components/LandingPage.jsx and components/ViewingPage.jsx (and their corresponding SCSS files) have tons of duplicate code. I would consolidate the code. For example, I would create a Thumbnail component, since the thumbnail layout is identical between the two pages.
+- Use a Higher Order Component to consolidate the duplicate logic in LandingPage and ViewingPage. They both call loadPage on mount, and both render a large featured video. The HOC would just need to accept the thumbnails section, since that's the only thing that differs (one has infinite scroll and the other doesn't).
+- Create a Thumbnail component, since the thumbnail layout is identical between the two pages.
 - Add eslint and scss-lint, and lint everything: alphabetize the SCSS rules, shorten line lengths, make sure whitespace is consistent, etc.
 - Prune the dependency list in package.json. I installed some stuff up front assuming I would need it and didn't end up needing it.
 - Add server-side rendering
