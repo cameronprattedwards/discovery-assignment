@@ -1,0 +1,29 @@
+$color-black: #000;
+
+.featured {
+  text-align: center;
+}
+
+.thumbnail {
+  float: left;
+  margin-right: 10px;
+}
+
+.column {
+  text-align: center;
+}
+
+.thumbnailWrapper {
+  color: $color-black;
+  display: block;
+  height: 180px;
+  margin: 0 auto 20px;
+  overflow: hidden;
+  text-align: left;
+  text-decoration: none;
+  width: 600px;
+
+  &:visited {
+    color: $color-black;
+  }
+}

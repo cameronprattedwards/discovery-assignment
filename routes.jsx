@@ -8,7 +8,7 @@ import {App} from './components/App';
 const routes = (
   <div>
     <Route exact={true} path="/" component={LandingPage} />
-    <Route path="/watch" component={ViewingPage} />
+    <Route path="/watch/:id" component={ViewingPage} />
   </div>
 );
 

@@ -1,9 +1,61 @@
 import React from 'react';
+import YouTube from 'react-youtube';
+import {Row, Col} from 'react-flexbox-grid';
+
 import css from './ViewingPage.scss';
 
+const additionalVideoShape = React.PropTypes.shape({
+  id: React.PropTypes.string,
+  title: React.PropTypes.string,
+  description: React.PropTypes.string,
+});
+
 class ViewingPage extends React.Component {
+  static propTypes = {
+    additionalVideos: React.PropTypes.arrayOf(additionalVideoShape).isRequired,
+    featuredVideo: React.PropTypes.string.isRequired,
+    loading: React.PropTypes.bool.isRequired,
+  }
+
+  componentDidMount() {
+    this.props.loadPage();
+  }
+
+  getThumbnails() {
+    return this.props.additionalVideos.map(video => {
+      return (
+        <Col md={6} xs={12} className={css.column} key={video.id}>
+          <a className={css.thumbnailWrapper} href={`/watch/${video.id}`}>
+            <img className={css.thumbnail} src={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`} />
+            <div className={css.description}>
+              <strong>{video.title}</strong>
+              <p>{video.description}</p>
+            </div>
+          </a>
+        </Col>
+      );
+    });
+  }
+
   render() {
-    return <div>I am the viewing page.</div>;
+    if (this.props.loading) {
+      return <div>Loading...</div>;
+    }
+
+    const opts = {
+      playerVars: { // https://developers.google.com/youtube/player_parameters 
+        autoplay: 1
+      }
+    };
+
+    return (
+      <div>
+        <div className={css.featured}>
+          <YouTube videoId={this.props.featuredVideo} opts={opts} />
+        </div>
+        <Row around="xs">{this.getThumbnails()}</Row>
+      </div>
+    );
   }
 }
 
