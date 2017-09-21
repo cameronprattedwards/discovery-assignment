@@ -1,6 +1,7 @@
 import React from 'react';
 import YouTube from 'react-youtube';
 import {Row, Col} from 'react-flexbox-grid';
+import {Link} from 'react-router-dom';
 
 import css from './ViewingPage.scss';
 
@@ -21,17 +22,23 @@ class ViewingPage extends React.Component {
     this.props.loadPage();
   }
 
+  componentDidUpdate(previousProps) {
+    if (previousProps.featuredVideo !== this.props.featuredVideo) {
+      this.props.loadPage();
+    }
+  }
+
   getThumbnails() {
     return this.props.additionalVideos.map(video => {
       return (
         <Col md={6} xs={12} className={css.column} key={video.id}>
-          <a className={css.thumbnailWrapper} href={`/watch/${video.id}`}>
+          <Link className={css.thumbnailWrapper} to={`/watch/${video.id}`}>
             <img className={css.thumbnail} src={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`} />
             <div className={css.description}>
               <strong>{video.title}</strong>
               <p>{video.description}</p>
             </div>
-          </a>
+          </Link>
         </Col>
       );
     });

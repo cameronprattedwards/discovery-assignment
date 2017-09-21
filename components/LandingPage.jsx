@@ -3,6 +3,7 @@ import YouTube from 'react-youtube';
 import {Row, Col} from 'react-flexbox-grid';
 import Infinite from 'react-infinite';
 import css from './LandingPage.scss';
+import {Link} from 'react-router-dom';
 
 const additionalVideoShape = React.PropTypes.shape({
   id: React.PropTypes.string,
@@ -26,13 +27,13 @@ class LandingPage extends React.Component {
   getThumbnails() {
     return this.props.additionalVideos.map(video => {
       return (
-        <a className={css.thumbnailWrapper} href={`/watch/${video.id}`} key={video.id}>
+        <Link className={css.thumbnailWrapper} to={`/watch/${video.id}`} key={video.id}>
           <img className={css.thumbnail} src={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`} />
           <div className={css.description}>
             <strong>{video.title}</strong>
             <p>{video.description}</p>
           </div>
-        </a>
+        </Link>
       );
     });
   }
