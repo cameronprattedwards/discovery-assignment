@@ -35,11 +35,6 @@ additionalVideos = _.sortBy(additionalVideos, 'title');
 
 - If the entire list was meant to be alphabetized, I would add essentially the same code to the loadMoreVideosSuccessReducer and loadPageSuccessReducer, except I would concatenate any new videos to the old list, then sort them as a complete list.
 - The assignment also requires that videos come from "various categories." I'm not sure if this means that the app logic is responsible for ensuring the variety of the video categories (once again, I should have clarified this at the beginning of the project). If that is the case, simply fetching related videos for the featured video doesn't cut it. I instead would send 10 requests to the YouTube API, each for separate video categories (https://developers.google.com/youtube/v3/docs/search/list#videoCategoryId), then add those to the list as they came in.
-Display errors that occur when loading additional videos.
-Swap the "Loading..." text out for a spinner, and add a spinner for the infinite scroll.
-
-
-
-
-
-
+- Display errors that occur when loading additional videos.
+- Swap the "Loading..." text out for a spinner, and add a spinner for the infinite scroll.
+- Stop using babel-node and start using babel-register.
